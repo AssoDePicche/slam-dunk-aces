@@ -1,3 +1,12 @@
+:root {
+  --clr-left-slice: #ca4e2c;
+  --clr-right-slice: #8ea34e;
+  --clr-neutral-light: #f5f5f5;
+  --clr-neutral-light-alt: #d9d9d9;
+  --clr-neutral-dark: #232323;
+  --transition: all 600ms cubic-bezier(0.5, 0, 0.5, 1);
+}
+
 *,
 *::before,
 *::after {
@@ -11,10 +20,167 @@ html {
 }
 
 body {
-  background-color: #232323;
+  background-color: var(--clr-neutral-dark);
   font-family: "Poppins", sans-serif;
   font-size: 1.6rem;
   height: 100vh;
   line-height: 1.5;
-  padding: 2rem;
+  padding: 3.2rem;
+}
+
+header {
+  background-image: url(../img/slam-dunk-logo.png);
+  background-repeat: no-repeat;
+  background-size: contain;
+  height: 200px;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 3;
+}
+
+footer {
+  color: var(--clr-neutral-light-alt);
+  padding: 0.4rem;
+}
+
+.hero,
+.slice,
+.slice .background {
+  height: 100%;
+}
+
+.slice,
+.slice .text,
+.slice h2::after {
+  position: absolute;
+}
+
+.slice.left,
+.slice.right,
+.slice h2::after,
+.slice .abstract,
+.slice .background {
+  transition: var(--transition);
+}
+
+.slice.left,
+.slice.left h2::after,
+.slice.left .text {
+  left: 0;
+}
+
+.slice.right,
+.slice.right h2::after,
+.slice.right .text {
+  right: 0;
+}
+
+.slice .text,
+.slice .background {
+  width: 100%;
+}
+
+.slice h2::after,
+.slice .text {
+  bottom: 0;
+}
+
+.hero {
+  position: relative;
+}
+
+.slice {
+  color: var(--clr-neutral-light);
+  cursor: pointer;
+  overflow: hidden;
+  width: calc(60% - 6.4rem);
+}
+
+.slice.left {
+  clip-path: polygon(0 0, 100% 0, 75% 100%, 0 100%);
+}
+
+.slice.right {
+  clip-path: polygon(25% 0, 100% 0, 100% 100%, 0 100%);
+}
+
+.slice .text {
+  background: linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0.75),
+    rgba(255, 255, 255, 0) 100%
+  );
+  padding: 3.2rem;
+  z-index: 2;
+}
+
+.slice h2 {
+  font-size: 4rem;
+  padding-bottom: 3.2rem;
+  position: relative;
+}
+
+.slice h2::after {
+  content: "";
+  height: 1.6rem;
+  margin-top: 1.6rem;
+  width: 3.2rem;
+}
+
+.slice.left h2::after {
+  background-color: var(--clr-left-slice);
+}
+
+.slice.right h2::after {
+  background-color: var(--clr-right-slice);
+}
+
+.slice .abstract {
+  color: var(--clr-neutral-light-alt);
+  max-height: 0;
+  opacity: 0;
+  padding-top: 1.6rem;
+}
+
+.slice p {
+  margin-bottom: 1.6rem;
+}
+
+.slice.left .text {
+  padding-right: 24rem;
+}
+
+.slice.right .text {
+  padding-left: 24rem;
+  text-align: right;
+}
+
+.slice .background {
+  filter: grayscale(1);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.slice.left .background {
+  background-image: url(../img/sakuragi.jpg);
+}
+
+.slice.right .background {
+  background-image: url(../img/rikawa.jpg);
+}
+
+.slice:hover .background {
+  filter: grayscale(0);
+  transform: scale(1.2);
+}
+
+.slice:hover .abstract {
+  max-height: 32rem;
+  opacity: 1;
+}
+
+.slice:hover h2:after {
+  width: 9.6rem;
 }
